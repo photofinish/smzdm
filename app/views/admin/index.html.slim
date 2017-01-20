@@ -1,0 +1,17 @@
+- items = @feeds
+.container
+  h1 Admin#index
+  - unless items.empty?
+    ul.list-group
+      - items.each do |item|
+        - percentage = item.deserved.to_f / item.undeserved.to_f
+        li.list-group-item.text-primary
+          em.small.pull-right = item.store
+          h4
+            a href='#{item.url}' = item.title
+          em.small --- #{item.digest}
+          p.small.text-info.text-overflow = item.description
+          div
+            em.small 值:#{number_to_percentage((percentage.nan? ? 0 : percentage), precision: 0)}
+            em.small.pull-right
+              span = item.post_at.localtime.to_s :db

@@ -1,0 +1,2 @@
+class InfoFinderJob < ApplicationJob
+end
